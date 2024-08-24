@@ -1,0 +1,18 @@
+[package]
+name = "toy_os"
+version = "0.1.0"
+edition = "2018"
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+
+[dependencies]
+bootloader = "0.9"
+
+[[bin]]
+name = "toy_os"
+test = false
+bench = false
