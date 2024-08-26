@@ -1,8 +1,8 @@
 # ToyOS
 
-Made Following the "Writing an OS in Rust" blog https://os.phil-opp.com/
+Made following the "Writing an OS in Rust" blog https://os.phil-opp.com/
 
-The goal is to
+The goal is not fancy
 - Learn more about OS 
-- Practise rust
+- Practise embeded rust
 
