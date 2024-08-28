@@ -142,9 +142,8 @@ macro_rules! println{
 }
 
 #[doc(hidden)] // to hide _print fn from generated documentation
-pub fn _print(args: fmt::Arguments) { // <- fn needs to be public because macros call them from
-    // anywhere
+               // function needs to be public because macros call them from anywhere
+pub fn _print(args: fmt::Arguments) {
     use core::fmt::Write;
     WRITER.lock().write_fmt(args).unwrap();
 }
-
