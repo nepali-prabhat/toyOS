@@ -141,21 +141,21 @@ macro_rules! println{
     ($($arg: tt)*) => ($crate::print!("{}\n", format_args!($($arg)*)));
 }
 
-#[doc(hidden)] // to hide _print fn from generated documentation
-               // function needs to be public because macros call them from anywhere
+// to hide _print fn from generated documentation
+// function needs to be public because macros call them from anywhere
+#[doc(hidden)]
 pub fn _print(args: fmt::Arguments) {
     use core::fmt::Write;
     WRITER.lock().write_fmt(args).unwrap();
 }
 
-
 #[test_case]
-fn test_println_simple(){
+fn test_println_simple() {
     println!("test_println_simple output works");
 }
 
 #[test_case]
-fn test_println_multiple(){
+fn test_println_multiple() {
     // rows overflow
     for _ in 0..202 {
         println!("test_println_many output");
@@ -164,12 +164,13 @@ fn test_println_multiple(){
 }
 
 #[test_case]
-fn test_println_output(){
+fn test_println_output() {
     let s = "This fits on a single line";
     print!("\n{}\n", s); // new line padding so that previous outputs don't affect us
-    for(i, c) in s.chars().enumerate() {
+    for (i, c) in s.chars().enumerate() {
         let screen_char = WRITER.lock().buffer.chars[BUFFER_HEIGHT - 2][i].read();
         assert_eq!(char::from(screen_char.ascii_character), c);
     }
 }
 // TODO: additional test cases
+// eg: buffer shifts up when passing string longer than BUFFER_WIDTH
